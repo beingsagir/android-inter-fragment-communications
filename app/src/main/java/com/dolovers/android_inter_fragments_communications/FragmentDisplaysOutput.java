@@ -6,16 +6,31 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.zip.Inflater;
 
 /**
  * Created by Sagiruddin on 3/25/2015.
  */
-public class FragmentDisplaysOutput extends Fragment {
+public class FragmentDisplaysOutput extends Fragment{
+
+    TextView tView;
+    Integer count = 0;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate( R.layout.output_fragment_layout, container, false);
     }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        tView = (TextView) getActivity().findViewById(R.id.textView);
+    }
+
+    public void changeText(String data){
+        tView.setText(data);
+    }
+
 }
