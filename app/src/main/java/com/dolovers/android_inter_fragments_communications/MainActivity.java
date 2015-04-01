@@ -1,7 +1,10 @@
 package com.dolovers.android_inter_fragments_communications;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -39,6 +42,9 @@ public class MainActivity extends ActionBarActivity implements FCommunicator{
 
     @Override
     public void respond(String data) {
-
+        FragmentManager manager = getFragmentManager();
+        FragmentDisplaysOutput f2 = (FragmentDisplaysOutput) manager.findFragmentById(R.id.fragment);
+        Log.v("now", data);
+        f2.changeText("Hey you clicked the button "+data +"Time(s)");
     }
 }

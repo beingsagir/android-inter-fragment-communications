@@ -16,17 +16,34 @@ import java.util.zip.Inflater;
 public class FragmentDisplaysOutput extends Fragment{
 
     TextView tView;
+    String data;
+
     Integer count = 0;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate( R.layout.output_fragment_layout, container, false);
+
+                View view = inflater.inflate( R.layout.output_fragment_layout, container, false);
+        if(savedInstanceState==null){
+
+        }else{
+           data = savedInstanceState.getString("data");
+           TextView text = (TextView) view.findViewById(R.id.textView);
+           text.setText(data);
+        }
+        return view;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         tView = (TextView) getActivity().findViewById(R.id.textView);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("data", data);
     }
 
     public void changeText(String data){
